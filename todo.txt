@@ -1,0 +1,4 @@
+Autenticação de Usuário
+- Login (com jwt)
+- Hash da Senha
+
