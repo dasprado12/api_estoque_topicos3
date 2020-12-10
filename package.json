@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --experimental-modules src/server.js",
-    "start": "node --experimental-modules src/app.js"
+    "start": "node --experimental-modules src/server.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
