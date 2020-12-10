@@ -1,4 +1,4 @@
-const app = require("./app")
+const app = require("./app.js")
 const bodyParser = require("body-parser")
 
 app.use(bodyParser.json())

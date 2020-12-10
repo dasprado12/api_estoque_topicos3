@@ -1,5 +1,5 @@
 const express = require('express');
-const disciplina = require("./routes");
+const disciplina = require("./routes.js");
 
 require("../database/index.js");
 
@@ -9,6 +9,7 @@ class App {
         this.app = express();
         this.app.use(express.json())
         this.routes();
+        this.app.listen(process.env.PORT || 5000 )
     }
 
     routes() {
