@@ -1,8 +1,6 @@
 const Produto = require("../models/Produto")
 const Tipo = require("../models/Tipo")
 
-
-
 class ProdutoController{
     async index(req, res){
         try {
@@ -76,7 +74,7 @@ class ProdutoController{
     async delete(req, res){
         const { id } = req.params;
         try {
-            const deleteProduct = await Produto.deleteOne({ 'id': id })
+            const deleteProduct = await Produto.deleteOne({'id': id, 'user_id': req.userId})
             if(deleteProduct.n > 0){
                 return res.status(200).json({message: "Deletado com Sucesso"})
             }if(deleteProduct.n == 0){
