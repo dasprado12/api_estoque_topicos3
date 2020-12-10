@@ -6,7 +6,7 @@ const Tipo = require("../models/Tipo")
 class ProdutoController{
     async index(req, res){
         try {
-            const produto = await Produto.find();
+            const produto = await Produto.find({'user_id': req.userId});
             return res.status(200).json(produto)
         } catch (error) {
             return res.status(500).json({ message: `Erro no servidor! ${error}` });
@@ -17,7 +17,7 @@ class ProdutoController{
         const { id } = req.params;
         console.log(id)
         try {
-            const produto = await Produto.find({'id': id});
+            const produto = await Produto.find({'id': id, 'user_id': req.userId});
             return res.status(200).json(produto)
         } catch (error) {
             return res.status(500).json({ message: `Erro no servidor! ${error}` });
@@ -25,9 +25,12 @@ class ProdutoController{
     }
 
     async store(req, res){
-        const { nome, tipo, user_id } = req.body;
+        const { nome, tipo } = req.body;
 
-        // Validar se user_id bate com o enviado no token
+        const body = req.body 
+        body['user_id'] = req.userId
+
+
 
         try {
             const exist = await Tipo.findOne({'nome': tipo})
@@ -39,7 +42,7 @@ class ProdutoController{
         }
 
         try {
-            const isCadastrado = await Produto.findOne({ nome })
+            const isCadastrado = await Produto.findOne({ nome, 'user_id': req.userId})
             if(isCadastrado){
                 return res.status(422).json({ message: `Produto já cadastrado` });
             }
@@ -48,7 +51,7 @@ class ProdutoController{
         }
 
         try {
-            const produto = await Produto.create(req.body)
+            const produto = await Produto.create(body)
             return res.status(200).json(produto) 
         } catch(error){
             return res.status(500).json({ message: `Erro no servidor! ${error}` });

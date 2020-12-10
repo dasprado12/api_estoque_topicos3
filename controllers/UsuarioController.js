@@ -1,7 +1,25 @@
+const jwt = require('jsonwebtoken')
 const Usuario = require("../models/Usuario")
-
+const auth = require('../config/auth');
 
 class UsuarioController {
+
+    async login(req, res){
+        const { email, senha } = req.body;
+        
+        const login = await Usuario.findOne({'email': email, 'senha': senha})
+
+        const nomeToken = login.nome
+        const idToken = login.id
+
+        return res.json({
+            login,
+            token: jwt.sign({ 'nome': nomeToken, 'id': idToken }, auth.secret, {
+                expiresIn: auth.expiresIn,
+            }),
+        })
+
+    }
 
     async index(req, res){
         try {

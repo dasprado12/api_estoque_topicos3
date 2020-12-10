@@ -6,13 +6,12 @@ import Volunteer from "../models/Volunteer";
 import File from "../models/File";
 
 import auth from "../config/auth";
-import Profile from "../models/Profile";
 
 class SessionController {
   async store(req, res) {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
-      password: Yup.string().required(),
+      senha: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
