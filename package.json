@@ -7,11 +7,13 @@
     "dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^2.0.5",
+    "react-router-dom": "^5.2.0",
     "sucrase": "^3.16.0"
   }
 }
