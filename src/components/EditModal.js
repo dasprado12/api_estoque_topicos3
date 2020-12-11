@@ -21,19 +21,19 @@ const customStyles = {
 const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
   const [msg, setMsg] = useState(null);
   // Se a chave não for ID trocar
-  const { name, description, quantity, type, id } = item;
+  const { nome, descricao, quantidade, tipo, user_id } = item;
   const { handleSubmit, register } = useForm();
 
   const onSubmit = async (data) => {
     try {
       if (isCreate) {
-        const response = await api.post(`/product`, data);
+        const response = await api.post(`/produto`, data);
 
         onRequestClose();
       } else {
         // Se a chave não for ID trocar
 
-        const response = await api.put(`/product/${id}`, data);
+        const response = await api.put(`/produto/${user_id}`, data);
 
         onRequestClose();
       }
@@ -45,7 +45,7 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
   const handleDelete = async (data) => {
     try {
       // data = {email, pwd}
-      const response = await api.delete(`/product/${id}`);
+      const response = await api.delete(`/produto/${user_id}`);
     } catch (error) {
       setMsg(error);
     }
@@ -55,13 +55,13 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={customStyles}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Label>Título</Label>
-        <Input defaultValue={name} name="name" ref={register} />
+        <Input defaultValue={nome} name="nome" ref={register} />
         <Label>Descrição</Label>
-        <Input defaultValue={description} name="description" ref={register} />
+        <Input defaultValue={descricao} name="descricao" ref={register} />
         <Label>Quantidade</Label>
-        <Input defaultValue={quantity} name="quantity" ref={register} />
+        <Input defaultValue={quantidade} name="quantidade" ref={register} />
         <Label>Tipo</Label>
-        <Input defaultValue={type} name="type" ref={register} />
+        <Input defaultValue={tipo} name="tipo" ref={register} />
         <p />
         <Button>Editar</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}

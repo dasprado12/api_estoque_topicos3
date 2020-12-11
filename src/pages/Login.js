@@ -15,7 +15,8 @@ const LoginPage = () => {
   const onSubmit = async (data) => {
     try {
       // data = {email, pwd}
-      const response = await api.post("/session", data);
+      const response = await api.post("/login", data);
+      console.log(response);
       api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
       history.push("/home");
     } catch (error) {
@@ -30,7 +31,7 @@ const LoginPage = () => {
         <Label>E-mail</Label>
         <Input name="email" ref={register} />
         <Label>Senha</Label>
-        <Input name="pwd" ref={register} />
+        <Input name="senha" ref={register} />
         <p />
         <Button>LOGIN</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}

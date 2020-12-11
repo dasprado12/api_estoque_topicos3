@@ -43,3 +43,9 @@ export const Title = styled.h1`
 export const ErrorMsg = styled.p`
   color: red;
 `;
+export const ContainerModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:  50%;
+`;

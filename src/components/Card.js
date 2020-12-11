@@ -14,7 +14,7 @@ import {
 import EditModal from "./EditModal";
 
 const Card = ({ item }) => {
-  const { name, description, type, quantity } = item;
+  const { nome, descricao, tipo, quantidade } = item;
   const [isOpen, setOpen] = useState(null);
 
   return (
@@ -22,14 +22,14 @@ const Card = ({ item }) => {
       <Row>
         <DataContainter>
           <Col>
-            <Title>{name}</Title>
-            <Description>{description}</Description>
+            <Title>{nome}</Title>
+            <Description>{descricao}</Description>
           </Col>
         </DataContainter>
         <InfoContainer>
           <Col>
-            <Label>Tipo: {type}</Label>
-            <Label>Quantidade: {quantity}</Label>
+            <Label>Tipo: {tipo}</Label>
+            <Label>Quantidade: {quantidade}</Label>
             <EditButton onClick={() => setOpen(true)}>
               <AiFillEdit /> Editar
             </EditButton>
