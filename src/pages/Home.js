@@ -10,63 +10,6 @@ import EditModal from "../components/EditModal";
 import api from "../api";
 
 const Home = () => {
-  // const arrayTest = [
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao:
-  //       "badsaldasdkasdwqsidqwhisa badsaldasdkasdwqsidqwhisa badsaldasdkasdwqsidqwhisa badsaldasdkasdwqsidqwhisa badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  //   {
-  //     nome: "Produto1",
-  //     tipo: "Livro",
-  //     descricao: "badsaldasdkasdwqsidqwhisa",
-  //     quantidade: 10,
-  //   },
-  // ];
 
   const [items, setItems] = useState(null);
   const [isOpen, setOpen] = useState(null);
@@ -83,6 +26,11 @@ const Home = () => {
     }
   };
 
+  const logout = () => {
+    localStorage.removeItem("token")
+    history.push("/");
+  }
+
   useEffect(() => {
     requestData();
   }, []);
@@ -91,7 +39,7 @@ const Home = () => {
     <div>
       <h1> Lista de produtos </h1>
       <Button onClick={() => setOpen(true)}> Criar produto </Button>
-      <Button onClick={() => history.push("/home")}> Atualizar </Button>
+      <Button onClick={() => logout()}>Logout</Button>
       <EditModal
         isOpen={isOpen}
         onRequestClose={() => setOpen(false)}

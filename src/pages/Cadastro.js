@@ -15,9 +15,8 @@ const CadastroPage = () => {
   const onSubmit = async (data) => {
     try {
       // data = {email, pwd}
-
+      console.log(data)
       const response = await api.post("/cadastro", data);
-      api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
       history.push("/");
     } catch (error) {
       setMsg(error);
@@ -38,11 +37,11 @@ const CadastroPage = () => {
       <Title> Cadastre-se </Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Label>Nome</Label>
-        <Input name="name" ref={register} />
+        <Input name="nome" ref={register} />
         <Label>E-mail</Label>
         <Input name="email" ref={register} />
         <Label>Senha</Label>
-        <Input name="pwd" ref={register} />
+        <Input name="senha" ref={register} />
         <p />
         <Button>Cadastrar</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}
