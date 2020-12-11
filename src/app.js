@@ -1,5 +1,6 @@
 const express = require('express');
-const disciplina = require("./routes.js");
+const routes = require("./routes.js");
+const cors = require('cors')
 
 require("../database/index.js");
 
@@ -11,9 +12,10 @@ class App {
         this.routes();
         this.app.listen(process.env.PORT || 5000 )
     }
-
+    
     routes() {
-        this.app.use(disciplina);
+        this.app.use(cors())
+        this.app.use(routes);
     }
 }
 
