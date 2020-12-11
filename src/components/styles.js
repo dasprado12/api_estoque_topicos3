@@ -63,6 +63,23 @@ export const Button = styled.button.attrs({
   cursor: pointer;
 `;
 
+export const ButtonC = styled.button.attrs({
+  type: "submit",
+})`
+  margin-left: auto;
+  margin-right: auto;
+  width: 255px;
+  height: 30px;
+  background-color: ${(props) => props.color || "green"};
+  margin-top: ${(props) => props.marginTop};
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+
 export const ErrorMsg = styled.p`
   color: red;
 `;

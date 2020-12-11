@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Label, Button, Input, Title, ErrorMsg } from "./styles";
+import { Container, Label, Button, ButtonC, Input, Title, ErrorMsg } from "./styles";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const CadastroPage = () => {
   const onSubmit = async (data) => {
     try {
       // data = {email, pwd}
+
       const response = await api.post("/cadastro", data);
       api.defaults.headers.Authorization = `Bearer ${response.data.token}`;
       history.push("/");
@@ -22,6 +23,15 @@ const CadastroPage = () => {
       setMsg(error);
     }
   };
+
+  const goToH = () => {
+    try {
+      history.push("/");
+
+    } catch(error){
+      console.log(error)
+    }
+  }
 
   return (
     <Container>
@@ -37,6 +47,9 @@ const CadastroPage = () => {
         <Button>Cadastrar</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}
       </form>
+      <br/>
+      <ButtonC onClick={handleSubmit(goToH)}>Log-in</ButtonC>
+
     </Container>
   );
 };

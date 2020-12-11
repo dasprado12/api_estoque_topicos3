@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Label, Button, Input, Title, ErrorMsg } from "./styles";
+import { Container, Label, Button, ButtonC, Input, Title, ErrorMsg } from "./styles";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
@@ -25,6 +25,15 @@ const LoginPage = () => {
     }
   };
 
+  const goToC = () => {
+    try {
+      history.push("/cadastro");
+
+    } catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <Container>
       <Title> Bem vindo </Title>
@@ -34,9 +43,12 @@ const LoginPage = () => {
         <Label>Senha</Label>
         <Input name="senha" ref={register} />
         <p />
-        <Button>LOGIN</Button>
+        <Button>Login</Button>
+        <br/>
+        <br/>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}
       </form>
+        <ButtonC onClick={handleSubmit(goToC)}>Cadastre-se</ButtonC>
     </Container>
   );
 };

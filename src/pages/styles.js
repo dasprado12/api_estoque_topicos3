@@ -26,6 +26,19 @@ export const Button = styled.button.attrs({
 })`
   width: 255px;
   height: 30px;
+  background-color: lightgreen;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const ButtonC = styled.button.attrs({
+  type: "submit",
+})`
+  width: 255px;
+  height: 30px;
   background-color: lightblue;
   color: #fff;
   font-weight: bold;

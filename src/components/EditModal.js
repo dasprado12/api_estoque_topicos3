@@ -71,7 +71,7 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
         <Label>Preço</Label>
         <Input defaultValue={preco} name="preco" ref={register} />
         <p />
-        <Button>Editar</Button>
+        <Button>Enviar</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}
       </form>
       <Button onClick={handleDelete} marginTop="5vh" color="red">
