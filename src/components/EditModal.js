@@ -21,33 +21,35 @@ const customStyles = {
 const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
   const [msg, setMsg] = useState(null);
   // Se a chave não for ID trocar
-  const { nome, descricao, quantidade, tipo, user_id } = item;
+  const { nome, descricao, quantidade, tipo, preco, id } = item;
   const { handleSubmit, register } = useForm();
 
   const onSubmit = async (data) => {
     try {
       if (isCreate) {
-        const response = await api.post(`/produto`, data);
+        const response = await api.post(`/produtos`, data);
 
         onRequestClose();
       } else {
         // Se a chave não for ID trocar
 
-        const response = await api.put(`/produto/${user_id}`, data);
+        const response = await api.patch(`/produtos/${id}`, data);
 
         onRequestClose();
       }
     } catch (error) {
-      setMsg(error);
+      //setMsg(error);
+      console.log(error);
     }
   };
 
   const handleDelete = async (data) => {
     try {
       // data = {email, pwd}
-      const response = await api.delete(`/produto/${user_id}`);
+      const response = await api.delete(`/produtos/${id}`);
     } catch (error) {
-      setMsg(error);
+      //setMsg(error);
+      console.log(error);
     }
   };
 
@@ -62,6 +64,8 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
         <Input defaultValue={quantidade} name="quantidade" ref={register} />
         <Label>Tipo</Label>
         <Input defaultValue={tipo} name="tipo" ref={register} />
+        <Label>Preço</Label>
+        <Input defaultValue={preco} name="preco" ref={register} />
         <p />
         <Button>Editar</Button>
         {msg && <ErrorMsg>{msg}</ErrorMsg>}
