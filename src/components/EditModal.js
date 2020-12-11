@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import { AiFillDelete } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 
 import api from "../api";
 
@@ -27,14 +28,15 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
   const onSubmit = async (data) => {
     try {
       if (isCreate) {
-        const response = await api.post(`/produtos`, data);
+        const response = await api.post(`/produtos`, data, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } } );
+        window.location.reload();
 
         onRequestClose();
       } else {
         // Se a chave não for ID trocar
 
-        const response = await api.patch(`/produtos/${id}`, data);
-
+        const response = await api.patch(`/produtos/${id}`, data, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } } );
+        window.location.reload();
         onRequestClose();
       }
     } catch (error) {
@@ -46,7 +48,9 @@ const EditModal = ({ isOpen, onRequestClose, item = {}, isCreate = false }) => {
   const handleDelete = async (data) => {
     try {
       // data = {email, pwd}
-      const response = await api.delete(`/produtos/${id}`);
+      const response = await api.delete(`/produtos/${id}`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } } );
+      window.location.reload();
+
     } catch (error) {
       //setMsg(error);
       console.log(error);

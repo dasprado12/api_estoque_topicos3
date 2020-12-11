@@ -74,8 +74,10 @@ const Home = () => {
 
   const requestData = async () => {
     try {
-      const response = await api.get("/produtos");
+      
+      const response = await api.get("/produtos" , { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } } );
       setItems(response.data);
+      
     } catch (error) {
       console.log({ error });
     }
@@ -89,7 +91,7 @@ const Home = () => {
     <div>
       <h1> Lista de produtos </h1>
       <Button onClick={() => setOpen(true)}> Criar produto </Button>
-      <Button onClick={() => this.requestData()}> Atualizar </Button>
+      <Button onClick={() => history.push("/home")}> Atualizar </Button>
       <EditModal
         isOpen={isOpen}
         onRequestClose={() => setOpen(false)}
