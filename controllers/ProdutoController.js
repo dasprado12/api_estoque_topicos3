@@ -30,14 +30,14 @@ class ProdutoController{
 
 
 
-        try {
-            const exist = await Tipo.findOne({'nome': tipo})
-            if( !exist ){ 
-                return res.status(422).json({ message: `Tipo não cadastrado` });
-            }
-        } catch (error) {
-            return res.status(500).json({ message: `Erro no servidor! ${error}` });
-        }
+        // try {
+        //     const exist = await Tipo.findOne({'nome': tipo})
+        //     if( !exist ){ 
+        //         return res.status(422).json({ message: `Tipo não cadastrado` });
+        //     }
+        // } catch (error) {
+        //     return res.status(500).json({ message: `Erro no servidor! ${error}` });
+        // }
 
         try {
             const isCadastrado = await Produto.findOne({ nome, 'user_id': req.userId})
