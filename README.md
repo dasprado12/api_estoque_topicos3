@@ -13,7 +13,7 @@ Essa aplicação tem como objetivo facilitar a vida dos comerciantes de modo ger
 
 ## Executando
 
-Para acessar a aplicação, basta executar o comando **yarn start** e acessar a porta 3000 no seu localhost. 
+Para acessar a aplicação, basta executar o comando **yarn install** e **yarn start** e acessar a porta 3000 no seu localhost. 
 
 - http://localhost:3000/ : página de login
 - http://localhost:3000/cadastro : página de cadastro
